@@ -386,6 +386,25 @@ export class KNXClient extends EventEmitter {
             } else if (knxHeader.service_type === KNX_CONSTANTS.TUNNELING_REQUEST) {
                 /** @type {KNXTunnelingRequest} */
                 const knxTunnelingRequest: KNXTunnelingRequest = knxMessage as KNXTunnelingRequest;
+                if (knxTunnelingRequest.cEMIMessage.msgCode === CEMIConstants.L_BUSMON_IND) {
+                    /** @type {LDataInd} */
+                    const ind = knxTunnelingRequest.cEMIMessage;
+                    if (ind.npdu.isGroupResponse) {
+                        this._handleResponse(knxTunnelingRequest);
+                    } else {
+                        /**
+                         * @event KNXClient#indication
+                         * @param {KNXAddress} knx src
+                         * @param {KNXAddress} knx dst
+                         * @param {NPDU} npdu
+                         */
+                        this.emit(KNXClient.KNXClientEvents.indication,
+                            ind.srcAddress,
+                            ind.dstAddress,
+                            ind.npdu
+                        );
+                    }
+                }
                 if (knxTunnelingRequest.cEMIMessage.msgCode === CEMIConstants.L_DATA_IND) {
                     /** @type {LDataInd} */
                     const ind = knxTunnelingRequest.cEMIMessage;

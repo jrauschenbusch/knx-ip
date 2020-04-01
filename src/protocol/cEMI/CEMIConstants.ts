@@ -13,6 +13,7 @@ export const CEMIConstants = {
     RF_FASK_ACK_INFO: 0x0A,
     MANUFACTURER_SPECIFIC_INFO: 0xFE,
     // Tunneling Message Code
+    L_BUSMON_IND: 0x2B,
     L_DATA_REQ: 0x11,
     L_DATA_CON: 0x2E,
     L_DATA_IND: 0x29,

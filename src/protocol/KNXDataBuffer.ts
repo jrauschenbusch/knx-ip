@@ -1,6 +1,8 @@
 'use strict';
 
 import { DataPoint } from '../DataPoints/DataPoint';
+import { StatusField } from './cEMI/StatusField';
+import { TimestampField } from './cEMI/TimestampField';
 
 export class KNXDataBuffer {
     /**
@@ -21,6 +23,14 @@ export class KNXDataBuffer {
 
     get info(): DataPoint | null {
         return this._info;
+    }
+
+    get status(): StatusField {
+        return StatusField.createFromBuffer(this._data, 0);
+    }
+
+    get timestamp(): TimestampField {
+        return TimestampField.createFromBuffer(this._data, 3);
     }
 
     sixBits(): boolean {

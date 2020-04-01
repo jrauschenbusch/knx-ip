@@ -5,6 +5,7 @@ import { KNXAddress } from '../KNXAddress';
 import { CEMIConstants } from './CEMIConstants';
 import { CEMIMessage } from './CEMIMessage';
 import { ControlField } from './ControlField';
+import { LBusInd } from './LBusInd';
 import { LDataInd } from './LDataInd';
 import { LDataCon } from './LDataCon';
 import { LDataReq } from './LDataReq';
@@ -20,6 +21,8 @@ export class CEMIFactory {
      */
     static createFromBuffer(type: number, buffer: Buffer, offset: number): CEMIMessage {
         switch (type) {
+            case CEMIConstants.L_BUSMON_IND:
+                return LBusInd.createFromBuffer(buffer, offset);
             case CEMIConstants.L_DATA_IND:
                 return LDataInd.createFromBuffer(buffer, offset);
             case CEMIConstants.L_DATA_CON:
