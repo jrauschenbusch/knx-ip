@@ -33,8 +33,19 @@ export class CEMIMessage {
         dstAddress: KNXAddress,
         npdu: NPDU): number {
 
-            const length = additionalInfo == null ? 0 : additionalInfo.length;
-            const npduLength = npdu == null ? 0 : npdu.length;
-            return 1 + length + control.length + srcAddress.length + dstAddress.length + npduLength;
+        const msgCodeLength = 1;
+        const additionalInfoLengthFieldLength = 1;
+        const additionalInfoLength = additionalInfo == null ? 0 : additionalInfo.length;
+        const npduLength = npdu == null ? 0 : npdu.length;
+
+        let length = msgCodeLength;
+        length += additionalInfoLengthFieldLength;
+        length += additionalInfoLength;
+        length += control.length;
+        length += srcAddress.length;
+        length += dstAddress.length;
+        length += npduLength;
+
+        return length;
     }
 }
