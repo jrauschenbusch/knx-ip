@@ -1,11 +1,11 @@
 'use strict';
-import {CEMIConstants} from './CEMIConstants';
-import KNXDataBuffer from '../KNXDataBuffer';
+import { CEMIConstants } from './CEMIConstants';
+import { KNXDataBuffer } from '../KNXDataBuffer';
 
-export = class NPDU {
+export class NPDU {
 
     set tpci(tpci: number) {
-        if (isNaN(tpci) ||  (tpci < 0 && tpci > 0xFF)) {
+        if (isNaN(tpci) || (tpci < 0 && tpci > 0xFF)) {
             throw new Error('Invalid TPCI');
         }
         this._tpci = tpci;
@@ -47,6 +47,7 @@ export = class NPDU {
             throw new Error('Invalid data Buffer');
         }
         if (data.sixBits() && data.length === 1 && data.value.readUInt8(0) < 0x3F) {
+            // merge data with apci if data is only one byte wide and small enough
             this.apci = (this.apci & 0xC0) | data.value.readUInt8(0);
             this._data = null;
             return;
@@ -138,4 +139,4 @@ export = class NPDU {
         }
         return Buffer.concat([buffer, this._data.value]);
     }
-};
+}

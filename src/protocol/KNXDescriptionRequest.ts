@@ -1,7 +1,7 @@
 'use strict';
-import {KNX_CONSTANTS} from './KNXConstants';
-import KNXPacket from './KNXPacket';
-import {HPAI} from './HPAI';
+import { KNX_CONSTANTS } from './KNXConstants';
+import { KNXPacket } from './KNXPacket';
+import { HPAI } from './HPAI';
 
 export class KNXDescriptionRequest extends KNXPacket {
     constructor(readonly hpai: HPAI) {

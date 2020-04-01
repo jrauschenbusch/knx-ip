@@ -38,7 +38,7 @@ export class ControlField {
     }
 
     set broadcast(broadcast: OnOff) {
-        this.control1 =  (this.control1 & 0xEF) | (Number(broadcast) << 4);
+        this.control1 = (this.control1 & 0xEF) | (Number(broadcast) << 4);
     }
 
     get broadcast(): OnOff {
@@ -99,7 +99,7 @@ export class ControlField {
         this.control2 = (this.control2 & 0xF0) | Number(format);
     }
 
-    get framrFormat(): number {
+    get frameFormat(): number {
         return this.control2 & 0xF;
     }
 
@@ -130,7 +130,7 @@ export class ControlField {
      */
     static createFromBuffer(buffer: Buffer, offset: number = 0): ControlField {
         if (offset + CONTROL_LENGTH >= buffer.length) {
-            throw new Error(`offset ${offset} out of buffer range ${buffer.length}`);
+            throw new Error(`offset ${offset} out of buffer range ${buffer.length}\nbuffer: ${buffer.toString('hex')}`);
         }
         const control1 = buffer.readUInt8(offset++);
         const control2 = buffer.readUInt8(offset);

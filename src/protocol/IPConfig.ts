@@ -1,7 +1,7 @@
 'use strict';
 import { DIB } from './DIB';
-import {KNX_CONSTANTS} from './KNXConstants';
-import {splitIP} from './KNXUtils';
+import { KNX_CONSTANTS } from './KNXConstants';
+import { splitIP } from './KNXUtils';
 const IP_CONFIG_LENGTH = 16;
 
 export = class IPConfig implements DIB {

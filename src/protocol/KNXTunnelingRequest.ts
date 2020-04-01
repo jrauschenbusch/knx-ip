@@ -1,8 +1,8 @@
 'use strict';
-import KNXPacket from './KNXPacket';
-import {KNX_CONSTANTS} from './KNXConstants';
-import CEMIFactory from './cEMI/CEMIFactory';
-import CEMIMessage from './cEMI/CEMIMessage';
+import { KNXPacket } from './KNXPacket';
+import { KNX_CONSTANTS } from './KNXConstants';
+import { CEMIFactory } from './cEMI/CEMIFactory';
+import { CEMIMessage } from './cEMI/CEMIMessage';
 
 export class KNXTunnelingRequest extends KNXPacket {
     constructor(readonly channelID: number, readonly seqCounter: number, readonly cEMIMessage: CEMIMessage) {
@@ -13,7 +13,7 @@ export class KNXTunnelingRequest extends KNXPacket {
         if (offset > buffer.length) {
             throw new Error('Buffer too short');
         }
-        const msgCode =  buffer.readUInt8(offset++);
+        const msgCode = buffer.readUInt8(offset++);
         return CEMIFactory.createFromBuffer(msgCode, buffer, offset);
     }
 
@@ -26,8 +26,8 @@ export class KNXTunnelingRequest extends KNXPacket {
             throw new Error('Buffer too short');
         }
         offset += 1;
-        const channelID =  buffer.readUInt8(offset++);
-        const seqCounter =  buffer.readUInt8(offset++);
+        const channelID = buffer.readUInt8(offset++);
+        const seqCounter = buffer.readUInt8(offset++);
         // skip reserved byte
         offset++;
         const cEMIMessage = this.parseCEMIMessage(buffer, offset);

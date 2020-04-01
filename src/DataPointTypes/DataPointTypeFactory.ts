@@ -20,7 +20,7 @@ import DPTTrigger from '../DataPointTypes/DPTTrigger';
 import DPTUpdown from '../DataPointTypes/DPTUpdown';
 import { DataPointType } from './DataPointType';
 
-export const DPTS: {[index: string]: DataPointType} = {
+export const DPTS: { [index: string]: DataPointType } = {
     DPTAlarm: new DPTAlarm(),
     DPTAngle: new DPTAngle(),
     DPTBinary: new DPTBinary(),

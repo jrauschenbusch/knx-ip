@@ -1,18 +1,19 @@
-import {EventEmitter} from 'events';
+import { EventEmitter } from 'events';
 import dgram from 'dgram';
-import {KNX_CONSTANTS, ConnectionStatus} from './protocol/KNXConstants';
-import {CEMIConstants} from './protocol/cEMI/CEMIConstants';
-import CEMIFactory from './protocol/cEMI/CEMIFactory';
-import LDataReq from './protocol/cEMI/LDataReq';
+
+import { KNX_CONSTANTS, ConnectionStatus } from './protocol/KNXConstants';
+import { CEMIConstants } from './protocol/cEMI/CEMIConstants';
+import { CEMIFactory } from './protocol/cEMI/CEMIFactory';
+import { LDataReq } from './protocol/cEMI/LDataReq';
 import { KNXTunnelingRequest } from './protocol/KNXTunnelingRequest';
-import LDataInd from './protocol/cEMI/LDataInd';
+import { LDataInd } from './protocol/cEMI/LDataInd';
 import { KNXProtocol } from './protocol/KNXProtocol';
-import KNXConnectResponse from './protocol/KNXConnectResponse';
-import KNXDisconnectRequest from './protocol/KNXDisconnectRequest';
-import KNXTunnelingAck from './protocol/KNXTunnelingAck';
+import { KNXConnectResponse } from './protocol/KNXConnectResponse';
+import { KNXDisconnectRequest } from './protocol/KNXDisconnectRequest';
+import { KNXTunnelingAck } from './protocol/KNXTunnelingAck';
 import { HPAI } from './protocol/HPAI';
 import { CRI } from './protocol/CRI';
-import KNXPacket from './protocol/KNXPacket';
+import { KNXPacket } from './protocol/KNXPacket';
 import { KNXAddress } from './protocol/KNXAddress';
 import { TunnelCRI, TunnelTypes } from './protocol/TunnelCRI';
 
@@ -57,7 +58,7 @@ enum KNXClientEvents {
 
 export class KNXClient extends EventEmitter {
 
-    static  KNXClientEvents = KNXClientEvents;
+    static KNXClientEvents = KNXClientEvents;
 
     get channelID(): number {
         return this._channelID;
@@ -100,15 +101,12 @@ export class KNXClient extends EventEmitter {
     send(knxPacket: KNXPacket, host?: string, port?: number): void {
         const peerHost = host == null ? this._peerHost : host;
         const peerPort = port == null ? this._peerPort : port;
+        const buffer: Buffer = knxPacket.toBuffer();
         this._clientSocket.send(
-            knxPacket.toBuffer(),
+            buffer,
             peerPort,
             peerHost,
-                err => {
-                    if (err) {
-                        this.emit(KNXClient.KNXClientEvents.error, err);
-                    }
-                });
+            err => this.emit(KNXClient.KNXClientEvents.error, err));
     }
 
     sendWriteRequest(
@@ -186,7 +184,7 @@ export class KNXClient extends EventEmitter {
         this.send(knxTunnelingRequest, peerHost, peerPort);
     }
 
-    startDiscovery(host: string , port: number = KNX_CONSTANTS.KNX_PORT): void {
+    startDiscovery(host: string, port: number = KNX_CONSTANTS.KNX_PORT): void {
         this._host = host;
         this._port = port;
         this._bindDiscoverySocket(host, port);
@@ -291,7 +289,7 @@ export class KNXClient extends EventEmitter {
         const ind: LDataInd = knxTunnelingResponse.cEMIMessage;
         const key: string = this._keyFromCEMIMessage(ind);
         if (this._pendingTunnelAnswer.has(key)) {
-            const {cb, timer, req} = this._pendingTunnelAnswer.get(key);
+            const { cb, timer, req } = this._pendingTunnelAnswer.get(key);
             if (ind.msgCode === CEMIConstants.L_DATA_CON &&
                 req.cEMIMessage.npdu.action === CEMIConstants.GROUP_READ) {
                 // do not clear the timer if only a confirmation of read request.
@@ -342,7 +340,7 @@ export class KNXClient extends EventEmitter {
 
     private _processInboundMessage(msg: Buffer, rinfo: SocketInfo): void {
         try {
-            const {knxHeader, knxMessage} = KNXProtocol.parseMessage(msg);
+            const { knxHeader, knxMessage } = KNXProtocol.parseMessage(msg);
             if (knxHeader.service_type === KNX_CONSTANTS.SEARCH_RESPONSE) {
                 if (this._discovery_timer == null) {
                     return;

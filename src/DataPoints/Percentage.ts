@@ -7,14 +7,14 @@
         "unit" : "%", "scalar_range" : [0, 100]
     },
  */
-import {DataPoint} from './DataPoint';
-import {DPTS} from '../DataPointTypes/DataPointTypeFactory';
+import { DataPoint } from './DataPoint';
+import { DPTS } from '../DataPointTypes/DataPointTypeFactory';
 import { KNXAddress } from '../protocol/KNXAddress';
 
 const MIN = 0;
 const MAX = 100;
 
-export = class Percentage extends DataPoint {
+export class Percentage extends DataPoint {
     constructor(ga: KNXAddress) {
         super(ga, DPTS.DPTPercentage);
 
@@ -31,7 +31,7 @@ export = class Percentage extends DataPoint {
         };
     }
 
-    set(param: {value: number}): void {
+    set(param: { value: number }): void {
         if ((param == null) || (param.value == null)) {
             throw new Error('Invalid parameter received for set. Expecting {value: number} ');
         }
@@ -41,4 +41,4 @@ export = class Percentage extends DataPoint {
         }
         this.write(value);
     }
-};
+}

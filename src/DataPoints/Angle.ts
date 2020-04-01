@@ -7,12 +7,12 @@
     "unit" : "°"
   },
  */
-import {DataPoint} from './DataPoint';
-import {DPTS} from '../DataPointTypes/DataPointTypeFactory';
+import { DataPoint } from './DataPoint';
+import { DPTS } from '../DataPointTypes/DataPointTypeFactory';
 import { KNXAddress } from '../protocol/KNXAddress';
 
-export = class Angle extends DataPoint {
-    constructor(ga: KNXAddress) {
-        super(ga, DPTS.DPTAngle);
-    }
-};
+export class Angle extends DataPoint {
+  constructor(ga: KNXAddress) {
+    super(ga, DPTS.DPTAngle);
+  }
+}

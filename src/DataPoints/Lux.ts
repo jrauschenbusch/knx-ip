@@ -7,12 +7,12 @@
         "unit" : "lux", "range" : [0, 670760]
     },
  */
-import {DataPoint} from './DataPoint';
-import {DPTS} from '../DataPointTypes/DataPointTypeFactory';
+import { DataPoint } from './DataPoint';
+import { DPTS } from '../DataPointTypes/DataPointTypeFactory';
 import { KNXAddress } from '../protocol/KNXAddress';
 
-export = class Lux extends DataPoint {
+export class Lux extends DataPoint {
     constructor(ga: KNXAddress) {
         super(ga, DPTS.DPTLux);
     }
-};
+}

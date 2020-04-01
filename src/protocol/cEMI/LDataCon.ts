@@ -1,12 +1,13 @@
 'use strict';
-import CEMIMessage from './CEMIMessage';
+
+import { CEMIMessage } from './CEMIMessage';
 import { CEMIConstants } from './CEMIConstants';
 import { KNXAddress } from '../KNXAddress';
-import {ControlField } from './ControlField';
-import NPDU from './NPDU';
-import KNXDataBuffer from '../KNXDataBuffer';
+import { ControlField } from './ControlField';
+import { NPDU } from './NPDU';
+import { KNXDataBuffer } from '../KNXDataBuffer';
 
-export = class LDataCon extends CEMIMessage {
+export class LDataCon extends CEMIMessage {
     constructor(
         additionalInfo: KNXDataBuffer,
         control: ControlField,
@@ -39,9 +40,9 @@ export = class LDataCon extends CEMIMessage {
             additionalInfo = new KNXDataBuffer(buffer.slice(offset, addLength));
             offset += addLength;
         }
-        const controlField =  ControlField.createFromBuffer(buffer, offset);
+        const controlField = ControlField.createFromBuffer(buffer, offset);
         offset += controlField.length;
-        const srcAddress =  KNXAddress.createFromBuffer(buffer, offset);
+        const srcAddress = KNXAddress.createFromBuffer(buffer, offset);
         offset += srcAddress.length;
         const dstAddress = KNXAddress.createFromBuffer(buffer, offset, controlField.addressType);
         offset += dstAddress.length;
@@ -70,4 +71,4 @@ export = class LDataCon extends CEMIMessage {
         msgBuffer.push(this.npdu.toBuffer());
         return Buffer.concat(msgBuffer);
     }
-};
+}

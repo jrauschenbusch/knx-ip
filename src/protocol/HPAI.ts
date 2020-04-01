@@ -1,6 +1,6 @@
 'use strict';
-import {KNX_CONSTANTS} from './KNXConstants';
-import KNXHeader = require('./KNXHeader');
+import { KNX_CONSTANTS } from './KNXConstants';
+import { KNXHeader } from './KNXHeader';
 const HPAI_STRUCTURE_LENGTH = 8;
 
 export enum KnxProtocol {
@@ -18,7 +18,7 @@ export class HPAI {
     }
 
     set port(port: number) {
-        if (isNaN(port) || typeof(port) !== 'number' || port < 0 || port > 65535) {
+        if (isNaN(port) || typeof (port) !== 'number' || port < 0 || port > 65535) {
             throw new Error(`Invalid port ${port}`);
         }
         this._port = port;
@@ -64,7 +64,7 @@ export class HPAI {
     private _splitHost: RegExpMatchArray;
     private _host: string;
 
-    constructor( _host: string, private _port: number = KNX_CONSTANTS.KNX_PORT, private _protocol: KnxProtocol = KNX_CONSTANTS.IPV4_UDP) {
+    constructor(_host: string, private _port: number = KNX_CONSTANTS.KNX_PORT, private _protocol: KnxProtocol = KNX_CONSTANTS.IPV4_UDP) {
         this.host = _host;
     }
 
@@ -77,7 +77,7 @@ export class HPAI {
             throw new Error(`offset ${offset} block length: ${structureLength} out of buffer range ${buffer.length}`);
         }
         offset++;
-        const protocol =  buffer.readUInt8(offset);
+        const protocol = buffer.readUInt8(offset);
         offset += 1;
         const ip = [];
         for (let i = 1; i <= 4; i++) {

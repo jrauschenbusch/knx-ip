@@ -1,5 +1,5 @@
-import {DataPoint} from './DataPoint';
-import {DPTS} from '../DataPointTypes/DataPointTypeFactory';
+import { DataPoint } from './DataPoint';
+import { DPTS } from '../DataPointTypes/DataPointTypeFactory';
 import { KNXAddress } from '../protocol/KNXAddress';
 /*
 
@@ -9,8 +9,8 @@ import { KNXAddress } from '../protocol/KNXAddress';
   }
  */
 
-export = class Time extends DataPoint {
+export class Time extends DataPoint {
     constructor(ga: KNXAddress) {
         super(ga, DPTS.DPTTime);
     }
-};
+}

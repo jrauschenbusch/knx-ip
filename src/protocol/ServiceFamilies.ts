@@ -1,8 +1,8 @@
 'use strict';
-import {DIB} from './DIB';
-import {KNX_CONSTANTS} from './KNXConstants';
+import { DIB } from './DIB';
+import { KNX_CONSTANTS } from './KNXConstants';
 
-export = class ServiceFamilies implements DIB {
+export class ServiceFamilies implements DIB {
 
     get type(): number {
         return this._type;
@@ -35,7 +35,7 @@ export = class ServiceFamilies implements DIB {
         if (type !== KNX_CONSTANTS.SUPP_SVC_FAMILIES) {
             throw new Error(`Invalid Service Family type ${type}`);
         }
-        const serviceFamily  = new ServiceFamilies();
+        const serviceFamily = new ServiceFamilies();
         for (let i = 2; i < structureLength; i += 2) {
             serviceFamily.set(buffer.readUInt8(offset), buffer.readUInt8(offset + 1));
             offset += 2;
@@ -70,4 +70,4 @@ export = class ServiceFamilies implements DIB {
         }
         return buffer;
     }
-};
+}

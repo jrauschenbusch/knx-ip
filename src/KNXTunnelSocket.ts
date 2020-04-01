@@ -1,9 +1,9 @@
 'use strict';
-import {EventEmitter} from 'events';
-import {KNXClient} from './KNXClient';
-import {KNXAddress} from './protocol/KNXAddress';
-import KNXDataBuffer = require('./protocol/KNXDataBuffer');
-import NPDU = require('./protocol/cEMI/NPDU');
+
+import { EventEmitter } from 'events';
+import { KNXClient } from './KNXClient';
+import { KNXAddress } from './protocol/KNXAddress';
+import { NPDU } from './protocol/cEMI/NPDU';
 
 export enum KNXTunnelSocketEvents {
     indication = 'indication',
@@ -21,7 +21,7 @@ export class KNXTunnelSocket extends EventEmitter {
     private _disconnectCB: (e?: Error) => void;
     private _monitoringBus: boolean;
     private _connected: boolean;
-    private _srcAddress: KNXAddress|null;
+    private _srcAddress: KNXAddress | null;
     private _host: string;
     private _port: number;
     constructor(srcAddress: string = null) {

@@ -1,12 +1,13 @@
 'use strict';
-import CEMIMessage from './CEMIMessage';
+
+import { CEMIMessage } from './CEMIMessage';
 import { CEMIConstants } from './CEMIConstants';
 import { KNXAddress } from '../KNXAddress';
-import {ControlField } from './ControlField';
-import NPDU from './NPDU';
-import KNXDataBuffer from '../KNXDataBuffer';
+import { ControlField } from './ControlField';
+import { KNXDataBuffer } from '../KNXDataBuffer';
+import { NPDU } from './NPDU';
 
-export = class LDataReq extends CEMIMessage {
+export class LDataReq extends CEMIMessage {
     constructor(
         additionalInfo: KNXDataBuffer,
         control: ControlField,
@@ -14,11 +15,11 @@ export = class LDataReq extends CEMIMessage {
         dstAddress: KNXAddress,
         npdu: NPDU) {
         super(CEMIConstants.L_DATA_REQ, CEMIMessage.GetLength(additionalInfo, control, srcAddress, dstAddress, npdu),
-        additionalInfo,
-        control,
-        srcAddress,
-        dstAddress,
-        npdu);
+            additionalInfo,
+            control,
+            srcAddress,
+            dstAddress,
+            npdu);
     }
 
     /**
@@ -37,9 +38,9 @@ export = class LDataReq extends CEMIMessage {
             additionalInfo = new KNXDataBuffer(buffer.slice(offset, addLength));
             offset += addLength;
         }
-        const controlField =  ControlField.createFromBuffer(buffer, offset);
+        const controlField = ControlField.createFromBuffer(buffer, offset);
         offset += controlField.length;
-        const srcAddress =  KNXAddress.createFromBuffer(buffer, offset);
+        const srcAddress = KNXAddress.createFromBuffer(buffer, offset);
         offset += srcAddress.length;
         const dstAddress = KNXAddress.createFromBuffer(buffer, offset, controlField.addressType);
         offset += dstAddress.length;
@@ -68,4 +69,4 @@ export = class LDataReq extends CEMIMessage {
         msgBuffer.push(this.npdu.toBuffer());
         return Buffer.concat(msgBuffer);
     }
-};
+}

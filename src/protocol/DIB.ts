@@ -1,4 +1,4 @@
 
-export interface DIB  {
+export interface DIB {
     type: number;
 }

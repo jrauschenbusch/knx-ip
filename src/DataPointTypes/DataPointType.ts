@@ -2,15 +2,15 @@
 
 import { Encoder, Decoder, DPT } from './definitions';
 
-import {DPT1} from './DPT1';
-import {DPT2} from './DPT2';
-import {DPT3} from './DPT3';
-import {DPT5} from './DPT5';
-import {DPT9} from './DPT9';
-import {DPT10} from './DPT10';
-import {DPT11} from './DPT11';
-import {DPT14} from './DPT14';
-import {DPT18} from './DPT18';
+import { DPT1 } from './DPT1';
+import { DPT2 } from './DPT2';
+import { DPT3 } from './DPT3';
+import { DPT5 } from './DPT5';
+import { DPT9 } from './DPT9';
+import { DPT10 } from './DPT10';
+import { DPT11 } from './DPT11';
+import { DPT14 } from './DPT14';
+import { DPT18 } from './DPT18';
 
 // KNX Specs
 // Chapter 3/7/2 Datapoint Types
@@ -47,7 +47,7 @@ export class DataPointType {
      * @property {DPTYPE}  DPT19
      * @property {DPTYPE}  DPT20
      */
-    static get TYPES(): {[index: string]: DPT | null } {
+    static get TYPES(): { [index: string]: DPT | null } {
         return {
             DPT1,
             DPT2,
@@ -84,11 +84,11 @@ export class DataPointType {
         return `${this.type}.${this.subtype}`;
     }
 
-    decode(buffer: Buffer): string|number {
+    decode(buffer: Buffer): string | number {
         return this._decoder(buffer);
     }
 
-    encode(value: string|number): Buffer {
+    encode(value: string | number): Buffer {
         return this._encoder(value);
     }
 }

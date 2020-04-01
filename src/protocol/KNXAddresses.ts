@@ -1,5 +1,5 @@
-import {DIB} from './DIB';
-import {KNX_CONSTANTS} from './KNXConstants';
+import { DIB } from './DIB';
+import { KNX_CONSTANTS } from './KNXConstants';
 import { KNXAddress } from './KNXAddress';
 
 export class KNXAddresses implements DIB {
@@ -40,7 +40,7 @@ export class KNXAddresses implements DIB {
         return knxAddresses;
     }
 
-    add(address: string|number): void {
+    add(address: string | number): void {
         this._addresses.add(KNXAddress.createFromString(address));
     }
 

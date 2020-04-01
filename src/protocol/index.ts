@@ -1,9 +1,9 @@
-import {KNXAddress} from './KNXAddress';
-import {DeviceInfo} from './DeviceInfo';
-import {HPAI} from './HPAI';
-import {KNXProtocol} from './KNXProtocol';
+import { KNXAddress } from './KNXAddress';
+import { DeviceInfo } from './DeviceInfo';
+import { HPAI } from './HPAI';
+import { KNXProtocol } from './KNXProtocol';
 
-export = {
+export default {
     DeviceInfo,
     HPAI,
     KNXAddress,

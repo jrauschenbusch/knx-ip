@@ -1,4 +1,4 @@
-import {KNX_CONSTANTS} from './KNXConstants';
+import { KNX_CONSTANTS } from './KNXConstants';
 
 export enum ConnectionTypes {
     TUNNEL_CONNECTION = KNX_CONSTANTS.TUNNEL_CONNECTION,

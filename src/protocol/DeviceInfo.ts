@@ -1,6 +1,6 @@
-import {DIB} from './DIB';
-import {KNX_CONSTANTS} from './KNXConstants';
-import {splitIP, validateKNXAddress} from './KNXUtils';
+import { DIB } from './DIB';
+import { KNX_CONSTANTS } from './KNXConstants';
+import { splitIP, validateKNXAddress } from './KNXUtils';
 
 const DEVICE_INFO_LENGTH = 0x36;
 const SERIALNUMBER_LENGTH = 6;
@@ -150,7 +150,7 @@ export class DeviceInfo implements DIB {
         this.address = address;
     }
 
-    static validArray = function(a: Array<number>, length: number): Array<number> {
+    static validArray = function (a: Array<number>, length: number): Array<number> {
         if ((!Array.isArray(a)) || a.length !== length) {
             throw new Error('Invalid array format');
         }

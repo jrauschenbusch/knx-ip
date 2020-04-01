@@ -1,5 +1,5 @@
 'use strict';
-import {KNX_CONSTANTS} from './KNXConstants';
+import { KNX_CONSTANTS } from './KNXConstants';
 
 /**
  +-7-+-6-+-5-+-4-+-3-+-2-+-1-+-0-+-7-+-6-+-5-+-4-+-3-+-2-+-1-+-0-+
@@ -13,7 +13,7 @@ import {KNX_CONSTANTS} from './KNXConstants';
  | (2 Octet)                                                     |
  +-7-+-6-+-5-+-4-+-3-+-2-+-1-+-0-+-7-+-6-+-5-+-4-+-3-+-2-+-1-+-0-+
  */
-export = class KNXHeader {
+export class KNXHeader {
 
     get headerLength(): number {
         return this._headerLength;
@@ -58,7 +58,7 @@ export = class KNXHeader {
     }
 
     toBuffer(): Buffer {
-        const buffer =  Buffer.alloc(this._headerLength);
+        const buffer = Buffer.alloc(this._headerLength);
         let offset = 0;
         buffer.writeUInt8(this._headerLength, offset);
         offset += 1;
@@ -70,4 +70,4 @@ export = class KNXHeader {
         return buffer;
     }
 
-};
+}

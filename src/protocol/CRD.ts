@@ -1,4 +1,4 @@
-import {KNX_CONSTANTS} from './KNXConstants';
+import { KNX_CONSTANTS } from './KNXConstants';
 import { KNXAddress } from './KNXAddress';
 const CRD_LENGTH = 4;
 
@@ -53,7 +53,7 @@ export class CRD {
             throw new Error('Buffer too short');
         }
         offset += 1;
-        const connectionType =  buffer.readUInt8(offset++);
+        const connectionType = buffer.readUInt8(offset++);
         const knxAddress = buffer.readUInt16BE(offset);
         return new CRD(connectionType, KNXAddress.createFromString(knxAddress));
     }

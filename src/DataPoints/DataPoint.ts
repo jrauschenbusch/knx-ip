@@ -1,7 +1,7 @@
 'use strict';
 
-import {DataPointType} from '../DataPointTypes/DataPointType';
-import {KNXAddress} from '../protocol/KNXAddress';
+import { DataPointType } from '../DataPointTypes/DataPointType';
+import { KNXAddress } from '../protocol/KNXAddress';
 import { DPT10Value } from '../DataPointTypes/DPT10';
 import { DPT3Value } from '../DataPointTypes/DPT3';
 import { DPT18Value } from '../DataPointTypes/DPT18';
@@ -54,7 +54,7 @@ export class DataPoint {
      * @param {number|DPT10Value|DPT3Value|Date|DPT18Value} val
      * @returns {Promise}
      */
-    async write(val: string|number|DPT10Value|DPT3Value|Date|DPT18Value|null = null): Promise<void> {
+    async write(val: string | number | DPT10Value | DPT3Value | Date | DPT18Value | null = null): Promise<void> {
         if (this._knxTunnelSocket == null) {
             throw new Error('Datapoint not binded');
         }

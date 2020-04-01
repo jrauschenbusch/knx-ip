@@ -1,5 +1,5 @@
-import {DataPoint} from './DataPoint';
-import {DPTS} from '../DataPointTypes/DataPointTypeFactory';
+import { DataPoint } from './DataPoint';
+import { DPTS } from '../DataPointTypes/DataPointTypeFactory';
 import { KNXAddress } from '../protocol/KNXAddress';
 /*
     // 9.001 temperature (oC)
@@ -10,8 +10,8 @@ import { KNXAddress } from '../protocol/KNXAddress';
     },
  */
 
-export = class Temperature extends DataPoint {
+export class Temperature extends DataPoint {
     constructor(ga: KNXAddress) {
         super(ga, DPTS.DPTTemperature);
     }
-};
+}

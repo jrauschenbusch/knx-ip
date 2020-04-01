@@ -1,17 +1,16 @@
 'use strict';
 
+import { KNXDataBuffer } from '../KNXDataBuffer';
 import { KNXAddress } from '../KNXAddress';
-
-import {CEMIConstants } from './CEMIConstants';
-import CEMIMessage = require('./CEMIMessage');
-import LDataInd = require('./LDataInd');
-import LDataCon = require('./LDataCon');
-import LDataReq = require('./LDataReq');
+import { CEMIConstants } from './CEMIConstants';
+import { CEMIMessage } from './CEMIMessage';
 import { ControlField } from './ControlField';
-import NPDU = require('./NPDU');
-import KNXDataBuffer = require('../KNXDataBuffer');
+import { LDataInd } from './LDataInd';
+import { LDataCon } from './LDataCon';
+import { LDataReq } from './LDataReq';
+import { NPDU } from './NPDU';
 
-export = class CEMIFactory {
+export class CEMIFactory {
     /**
      *
      * @param {number} type - message type
@@ -42,7 +41,7 @@ export = class CEMIFactory {
      */
     static newLDataIndicationMessage(isGroupAddress: boolean, srcAddress: KNXAddress, dstAddress: KNXAddress, data: Buffer): LDataInd {
         const controlField = new ControlField();
-        controlField.addressType = isGroupAddress === true ?  1 : 0;
+        controlField.addressType = isGroupAddress === true ? 1 : 0;
         controlField.ack = 0;
         const npdu = new NPDU();
         npdu.tpci = NPDU.TPCI_UNUMBERED_PACKET;
@@ -62,7 +61,7 @@ export = class CEMIFactory {
      */
     static newLDataRequestMessage(isWrite: boolean, isGroupAddress: boolean, srcAddress: KNXAddress, dstAddress: KNXAddress, data: Buffer): LDataReq {
         const controlField = new ControlField();
-        controlField.addressType = isGroupAddress ?  1 : 0;
+        controlField.addressType = isGroupAddress ? 1 : 0;
         controlField.ack = isWrite ? 1 : 0;
         const npdu = new NPDU();
         npdu.tpci = NPDU.TPCI_UNUMBERED_PACKET;
@@ -81,7 +80,7 @@ export = class CEMIFactory {
      */
     static newLDataConfirmationMessage(isGroupAddress: boolean, srcAddress: KNXAddress, dstAddress: KNXAddress, data: Buffer): LDataReq {
         const controlField = new ControlField();
-        controlField.addressType = isGroupAddress === true ?  1 : 0;
+        controlField.addressType = isGroupAddress === true ? 1 : 0;
         controlField.ack = 0;
         const npdu = new NPDU();
         npdu.tpci = NPDU.TPCI_UNUMBERED_PACKET;
@@ -89,4 +88,4 @@ export = class CEMIFactory {
         npdu.data = new KNXDataBuffer(data);
         return new LDataReq(null, controlField, srcAddress, dstAddress, npdu);
     }
-};
+}

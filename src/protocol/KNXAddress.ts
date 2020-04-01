@@ -1,6 +1,6 @@
 'use strict';
 
-import {validateKNXAddress} from './KNXUtils';
+import { validateKNXAddress } from './KNXUtils';
 const ADDRESS_LENGTH = 2;
 
 export enum KNXAddressType {
@@ -33,7 +33,7 @@ export class KNXAddress {
         return KNXAddressType.TYPE_GROUP;
     }
 
-    static createFromString(address: string|number, type: KNXAddressType = KNXAddressType.TYPE_INDIVIDUAL): KNXAddress {
+    static createFromString(address: string | number, type: KNXAddressType = KNXAddressType.TYPE_INDIVIDUAL): KNXAddress {
         return new KNXAddress(validateKNXAddress(address, type === KNXAddressType.TYPE_GROUP), type);
     }
 

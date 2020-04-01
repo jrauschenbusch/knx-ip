@@ -1,10 +1,12 @@
 'use strict';
+
 import { DIB } from './DIB';
-import {KNX_CONSTANTS} from './KNXConstants';
-import {splitIP} from './KNXUtils';
+import { KNX_CONSTANTS } from './KNXConstants';
+import { splitIP } from './KNXUtils';
+
 const IP_CURRENT_CONFIG_LENGTH = 20;
 
-export = class IPCurrentConfig implements DIB {
+export class IPCurrentConfig implements DIB {
 
     get type(): number {
         return this._type;
@@ -116,4 +118,4 @@ export = class IPCurrentConfig implements DIB {
         buffer.writeUInt8(this.assignment, offset);
         return buffer;
     }
-};
+}

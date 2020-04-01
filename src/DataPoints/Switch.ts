@@ -1,5 +1,5 @@
-import {DataPoint} from './DataPoint';
-import {DPTS} from '../DataPointTypes/DataPointTypeFactory';
+import { DataPoint } from './DataPoint';
+import { DPTS } from '../DataPointTypes/DataPointTypeFactory';
 import { KNXAddress } from '../protocol/KNXAddress';
 /*
     //  1.001 on/off
@@ -11,12 +11,12 @@ import { KNXAddress } from '../protocol/KNXAddress';
 
  */
 
-export = class Switch extends DataPoint {
+export class Switch extends DataPoint {
     constructor(ga: KNXAddress) {
         super(ga, DPTS.DPTSwitch);
         this._actions = {
-            'off': {func: this.setOff.bind(this), parameterType: null},
-            'on': {func: this.setOn.bind(this), parameterType: null}
+            'off': { func: this.setOff.bind(this), parameterType: null },
+            'on': { func: this.setOn.bind(this), parameterType: null }
         };
     }
 
@@ -33,4 +33,4 @@ export = class Switch extends DataPoint {
     setOn(): void {
         this.write(1);
     }
-};
+}
