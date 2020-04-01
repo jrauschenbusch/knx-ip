@@ -1,3 +1,7 @@
 node_modules
+badges
+coverage
+lib
 .idea
+.vscode
 package-lock.json
